@@ -2,31 +2,36 @@
 
 use Illuminate\Http\Request;
 
-// Authentication Wrapper
-Route::group(['prefix' => 'auth'], function () {
-    
-    /*-------------------------------------------------------------
-    | User Account API requests                                     
-    |--------------------------------------------------------------*/
+/*-------------------------------------------------------------------------
+| Account
+|--------------------------------------------------------------------------*/
 
+Route::group(['prefix' => 'account'], function () {
+    
     Route::post('login', 'AuthController@login');
     Route::post('signup', 'AuthController@signup');
 
-    // Requests using Authorization
+    // Authorized
     Route::get('logout', 'AuthController@logout')->middleware('auth:api');
     Route::get('user', 'AuthController@user')->middleware('auth:api');
+    
+});
+  
+/*-------------------------------------------------------------------------
+| OSRS Player Data
+|--------------------------------------------------------------------------*/
 
-    /*-------------------------------------------------------------
-    | OSRS Data
-    |--------------------------------------------------------------*/
+Route::group(['prefix' => 'player_stats'], function () {
 
-    /*-------------------------------------------------------------
-    | Other
-    |--------------------------------------------------------------*/
+    Route::get('/{username}', 'PlayerStatsController@get_player_stats');
 
-    Route::fallback(function(){
-        return response()->json([
-            'message' => 'Invalid Request'], 404);
-    });
+});
+    
+/*-------------------------------------------------------------------------
+| Other
+|--------------------------------------------------------------------------*/
 
+// fallback to catch invalid routes
+Route::fallback(function(){
+    return response()->json(['message' => 'Invalid Request'], 404);
 });
