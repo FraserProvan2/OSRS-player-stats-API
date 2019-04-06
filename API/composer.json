@@ -40,7 +40,10 @@
             "database/seeds",
             "database/factories"
         ],
-        "files": ["app/OSRS_stat_helper.php"]
+        "files": [
+            "app/Helpers/OSRS_stat_helper.php",
+            "app/Helpers/Common_helper.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
