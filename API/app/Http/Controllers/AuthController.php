@@ -1,6 +1,6 @@
 <?php
 /**
- * Author: Alfredo Barron
+ * Class Author: Alfredo Barron
  */
 
 namespace App\Http\Controllers;

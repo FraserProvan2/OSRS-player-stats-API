@@ -2,18 +2,31 @@
 
 use Illuminate\Http\Request;
 
-/*------------------------------------------------------------------------
-| API Routes
-|-------------------------------------------------------------------------*/
-
+// Authentication Wrapper
 Route::group(['prefix' => 'auth'], function () {
+    
+    /*-------------------------------------------------------------
+    | User Account API requests                                     
+    |--------------------------------------------------------------*/
 
     Route::post('login', 'AuthController@login');
     Route::post('signup', 'AuthController@signup');
-  
-    Route::group(['middleware' => 'auth:api'], function(){
-        
-        Route::get('logout', 'AuthController@logout');
-        Route::get('user', 'AuthController@user');
+
+    // Requests using Authorization
+    Route::get('logout', 'AuthController@logout')->middleware('auth:api');
+    Route::get('user', 'AuthController@user')->middleware('auth:api');
+
+    /*-------------------------------------------------------------
+    | OSRS Data
+    |--------------------------------------------------------------*/
+
+    /*-------------------------------------------------------------
+    | Other
+    |--------------------------------------------------------------*/
+
+    Route::fallback(function(){
+        return response()->json([
+            'message' => 'Invalid Request'], 404);
     });
+
 });
