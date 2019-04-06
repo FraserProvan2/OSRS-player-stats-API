@@ -19,7 +19,15 @@ class PlayerStatsController extends Controller
     {
         // get users stats
         $raw_stats = OSRS_stat_helper::get_stats_raw($username);
-        $stats = OSRS_stat_helper::process_stats($raw_stats);
+
+        // catch if player doesnt exist
+        if($raw_stats){
+            $stats = OSRS_stat_helper::process_stats($raw_stats);
+        } else {
+            return response()->json([
+                'message' => 'Player ' . $username . ' not found.',
+            ], 404); 
+        }
 
         return response()->json([
             'username' => $username,

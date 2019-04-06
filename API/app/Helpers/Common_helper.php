@@ -74,4 +74,33 @@ class Common_Helper {
         return var_dump($array);
     }
 
+    /**
+     * Checks if value start with int or not
+     * 
+     * @param String value to check
+     * @return Boolean whether the value is an Int
+     */
+    static function check_for_int($string) 
+    {
+        $length = strlen($string);   
+        for ($i = 0, $int = ''; $i < $length; $i++) {
+        if (is_numeric($string[$i]))
+            $int .= $string[$i];
+        else break;
+        }
+    
+        return (int) $int;
+    }
+
+    /**
+     * Converts string into In
+     * 
+     * @param String value
+     * @return Int String value
+     */
+    static function string_to_int($string)
+    {
+        return (int) str_replace(',', '', $string);
+    }
+
 }
