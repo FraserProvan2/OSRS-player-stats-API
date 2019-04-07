@@ -20,7 +20,7 @@ class OSRS_stat_helper
 
         // Trim 1: Tags Removed
         $response = strip_tags($response);
-
+        
         // Trim 2: Remove everything above stats table
         $exploded_response = explode('SkillRankLevelXP', $response);
         
@@ -31,20 +31,21 @@ class OSRS_stat_helper
             // Trim 3: Remove everything under stats table
             $exploded_response = explode('Minigame', $response);
             $response = $exploded_response[0];
-
+            
             // Trim 4: Explode by new line
             $exploded_response = explode(PHP_EOL, $response);
-
+            
             // Trim 5: Remove empty arrays
-
+            $filtered_response = array_filter($exploded_response);
+            
             // Reorder and return player stats array
             return Common_helper::reindex_array($filtered_response);
         }
-
+        
         // Return empty array to imply no player was found
         return array();
     }
-
+    
     /**
      * Proccess Raw Stats array into data object
      *
@@ -58,7 +59,7 @@ class OSRS_stat_helper
         $list_of_stats = array();
         $no_xp_stats = array();
         $all_stats = array('Attack', 'Defence', 'Strength', 'Hitpoints', 'Ranged', 'Prayer', 'Magic', 'Cooking', 'Woodcutting', 'Fletching', 'Fishing', 'Firemaking', 'Crafting', 'Smithing', 'Mining', 'Herblore', 'Agility', 'Thieving', 'Slayer', 'Farming', 'Runecraft', 'Hunter', 'Construction');
-
+        
         // process stats
         foreach ($raw_stats as $key => $stat) {
             if (!Common_Helper::check_for_int($stat)) {
@@ -67,12 +68,13 @@ class OSRS_stat_helper
                     'Level' => Common_Helper::string_to_int($raw_stats[$key + 2]),
                     'XP' => Common_Helper::string_to_int($raw_stats[$key + 3]),
                 ];
-
+                
                 // push stat name to array
                 array_push($list_of_stats, $stat);
             }
         }
-
+        
+        
         // process stats that are 0 xp
         foreach ($all_stats as $key => $stat) {
             if (!in_array($stat, $list_of_stats)) {
