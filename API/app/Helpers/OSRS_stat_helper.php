@@ -74,7 +74,6 @@ class OSRS_stat_helper
             }
         }
         
-        
         // process stats that are 0 xp
         foreach ($all_stats as $key => $stat) {
             if (!in_array($stat, $list_of_stats)) {

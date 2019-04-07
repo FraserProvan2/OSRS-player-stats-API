@@ -21,7 +21,7 @@ Route::group(['prefix' => 'account'], function () {
 | OSRS Player Data
 |--------------------------------------------------------------------------*/
 
-Route::group(['prefix' => 'player_stats'], function () {
+Route::group(['prefix' => 'playerStats'], function () {
 
     Route::get('/{username}', 'PlayerStatsController@get_player_stats');
 
