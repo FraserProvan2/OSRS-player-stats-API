@@ -18,8 +18,10 @@ class OSRSPlayerStatsTest extends TestCase
      */
     public function check_player_stats_fetched()
     {
+        // setup
         $response = $this->get('/api/playerStats/krun64');
         
+        // test
         $response
             ->assertOk()
             ->assertJson([
@@ -36,8 +38,10 @@ class OSRSPlayerStatsTest extends TestCase
      */
     public function check_player_stats_for_no_player()
     {
+        // setup
         $response = $this->get('/api/playerStats/thisisnotauser');
 
+        // test
         $response
         ->assertStatus(404)
         ->assertJson([
