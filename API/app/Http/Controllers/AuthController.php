@@ -1,9 +1,5 @@
 <?php
 
-/**
- * Class Author: Alfredo Barron
- */
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -16,11 +12,11 @@ class AuthController extends Controller
     /**
      * Create user
      *
-     * @param  [string] name
-     * @param  [string] email
-     * @param  [string] password
-     * @param  [string] password_confirmation
-     * @return [string] message
+     * @param  String name
+     * @param  String email
+     * @param  String password
+     * @param  String password_confirmation
+     * @return String message
      */
     public function signup(Request $request)
     {
@@ -46,12 +42,12 @@ class AuthController extends Controller
     /**
      * Login user and create token
      *
-     * @param  [string] email
-     * @param  [string] password
-     * @param  [boolean] remember_me
-     * @return [string] access_token
-     * @return [string] token_type
-     * @return [string] expires_at
+     * @param  String email
+     * @param  String password
+     * @param  Boolean remember_me
+     * @return String access_token
+     * @return String token_type
+     * @return String expires_at
      */
     public function login(Request $request)
     {
@@ -89,7 +85,7 @@ class AuthController extends Controller
     /**
      * Logout user (Revoke the token)
      *
-     * @return [string] message
+     * @return String message
      */
     public function logout(Request $request)
     {
@@ -103,7 +99,7 @@ class AuthController extends Controller
     /**
      * Get the authenticated User
      *
-     * @return [json] user object
+     * @return Json user object
      */
     public function user(Request $request)
     {

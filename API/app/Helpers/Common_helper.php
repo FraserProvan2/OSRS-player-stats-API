@@ -12,18 +12,15 @@ class Common_Helper {
      * @param Boolean Toggle return transfer
      * @return Collection response
      */
-    static function curl_request($url, $headers = NULL, $returntransfer = false) 
+    static function curl_request($url, $headers = false, $returntransfer = false) 
     {
         // creats curl request
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
-        // curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-        // die;
-
-        // toggle return transfer
-        if($returntransfer == true) {
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        }
+        
+        // config
+        if($returntransfer == true) curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        if($headers == true) curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         
         // gets curl response
         $response = curl_exec($curl);
