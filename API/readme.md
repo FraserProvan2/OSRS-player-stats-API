@@ -12,7 +12,7 @@
 5. In the terminal, run `php artisan passport:install` to install Laravel Passport and generate a client 
 
 #### Testing (phpunit) ####
-- Run `vendor/bin/phpunit` in the Terminal
+1. Run `vendor/bin/phpunit` in the Terminal
 Alternatively to create an alias in the Terminal (API Directory):
-1. Run `alias test="vendor/bin/phpunit"` to create an alias
-2. Run `test` to run feature and unit tests
+2. Run `alias test="vendor/bin/phpunit"` to create an alias
+3. Run `test` to run feature and unit tests
