@@ -17,6 +17,11 @@ trait CreatesApplication
 
         $app->make(Kernel::class)->bootstrap();
 
+        // custom setup
+        \Artisan::call('migrate',['-vvv' => true]);
+        // \Artisan::call('passport:install',['-vvv' => true]);
+        // \Artisan::call('db:seed',['-vvv' => true]);
+
         return $app;
     }
 }

@@ -27,14 +27,14 @@ class Like extends Model
                 'user_id' => Auth()->id(),
                 'account_id' => $account_id
             ]);
-
+            
             return true;
         } else {
             // dislike account if already liked
             Like::where('user_id', Auth()->id())
                 ->where('account_id', $account_id)
                 ->delete();
-    
+
             return false;
         }
     }

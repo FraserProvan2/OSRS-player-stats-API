@@ -10,7 +10,7 @@ class Account extends Model
 
     /**
      * Get info of account
-     * If account doesnt exist, create
+     * If account hasnt been registered, create
      *
      * @param String account name
      * @return Object account data
@@ -20,7 +20,7 @@ class Account extends Model
         // fetch account data
         $account_data = Account::where('account_name', $account_name)->first();
 
-        // if account doesnt exist create account record
+        // if account hasnt been registered create account record
         if(!isset($account_data)) {
             $account_data = Account::create(['account_name' => $account_name]);
         } 
