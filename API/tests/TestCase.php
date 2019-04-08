@@ -2,10 +2,9 @@
 
 namespace Tests;
 
+use App\User;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Laravel\Passport\Passport;
-
-use App\User;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -16,7 +15,9 @@ abstract class TestCase extends BaseTestCase
      *
      * @return Object authenticated user
      */
-    public function mock_auth(){
+    public function mock_auth()
+    {
+
         return Passport::actingAs(
             factory(User::class)->create(),
             ['create-servers']

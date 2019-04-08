@@ -22,8 +22,8 @@ class PlayerLikesTest extends TestCase
         // tests
         $this->like_account(); // POST
         $this->check_account_is_liked(); // GET
-        $this->dislike_account(); // POST
-        $this->check_account_is_disliked(); // GET
+        $this->unlike_account(); // POST
+        $this->check_account_is_unliked(); // GET
     }
 
     /**
@@ -49,7 +49,7 @@ class PlayerLikesTest extends TestCase
      * Checks account can be unliked
      *
      */
-    public function dislike_account()
+    public function unlike_account()
     {
         // setup
         $body = ['account_name' => 'Krun64'];
@@ -85,7 +85,7 @@ class PlayerLikesTest extends TestCase
      * Checks account is unliked when checked (via api get request)
      *
      */
-    public function check_account_is_disliked()
+    public function check_account_is_unliked()
     {
         // set up
         $response = $this->get('/api/playerLikes/Krun64');

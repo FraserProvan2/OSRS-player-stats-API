@@ -2,9 +2,8 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class OSRSPlayerStatsTest extends TestCase
 {
@@ -20,13 +19,13 @@ class OSRSPlayerStatsTest extends TestCase
     {
         // setup
         $response = $this->get('/api/playerStats/krun64');
-        
+
         // test
         $response
             ->assertOk()
             ->assertJson([
                 'username' => 'krun64',
-                'stats' => []
+                'stats' => [],
             ]);
     }
 
@@ -43,10 +42,10 @@ class OSRSPlayerStatsTest extends TestCase
 
         // test
         $response
-        ->assertStatus(404)
-        ->assertJson([
-            'message' => 'Player thisisnotauser not found.'
-        ]);
+            ->assertStatus(404)
+            ->assertJson([
+                'message' => 'Player thisisnotauser not found.',
+            ]);
     }
 
 }
