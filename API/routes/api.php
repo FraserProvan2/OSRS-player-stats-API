@@ -7,11 +7,8 @@ use Illuminate\Http\Request;
 |--------------------------------------------------------------------------*/
 
 Route::group(['prefix' => 'account'], function () {
-
     Route::post('login', 'AuthController@login');
     Route::post('signup', 'AuthController@signup');
-
-    // Authorized
     Route::get('logout', 'AuthController@logout')->middleware('auth:api');
     Route::get('user', 'AuthController@user')->middleware('auth:api');
 });
@@ -20,17 +17,23 @@ Route::group(['prefix' => 'account'], function () {
 | OSRS Player Data
 |--------------------------------------------------------------------------*/
 
+// Get Stats
 Route::get('playerStats/{account_name}', 'PlayerStatsController@get_player_stats');
 
-// Authorized
+// Likes
 Route::post('playerLikes', 'PlayerLikesController@update_likes')->middleware('auth:api');
 Route::get('playerLikes/{account_name}', 'PlayerLikesController@check_if_liked')->middleware('auth:api');
+
+// Comments
+Route::get('playerComments/{account_name}', 'PlayerCommentsController@get_comments')->middleware('auth:api');
+Route::post('playerComments', 'PlayerCommentsController@post_comment')->middleware('auth:api');
+Route::delete('playerComments/{id}', 'PlayerCommentsController@destroy_comment')->middleware('auth:api');
 
 /*-------------------------------------------------------------------------
 | Other
 |--------------------------------------------------------------------------*/
 
-// fallback to catch invalid routes
+// Fallback to catch invalid routes
 Route::fallback(function(){
     return response()->json(['message' => 'Invalid Request'], 404);
 });

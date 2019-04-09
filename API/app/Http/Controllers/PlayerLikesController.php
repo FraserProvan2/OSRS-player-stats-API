@@ -21,6 +21,7 @@ class PlayerLikesController extends Controller
             'account_name' => ['required'],
         ]);
 
+        // get account data
         $account_data = Account::get_account_info_by_name(request()->get('account_name'));     
   
         // like or unlike (depending if liked already)
@@ -33,6 +34,7 @@ class PlayerLikesController extends Controller
             $message = 'Player unliked';
         }
 
+        // response
         return response()->json([
             'message' => $message
         ], 200);
@@ -46,6 +48,7 @@ class PlayerLikesController extends Controller
      */
     public function check_if_liked($account_name)
     {
+        // get account data
         $account_data = Account::get_account_info_by_name($account_name);   
 
         // attempt to get like data to check if liked already
@@ -60,6 +63,7 @@ class PlayerLikesController extends Controller
             $message = false;
         }
 
+        // response
         return response()->json([
             'liked' => $message
         ], 200);

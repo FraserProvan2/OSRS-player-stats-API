@@ -2,9 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\User;
-use Tests\TestCase;
 use App\Like;
+use Tests\TestCase;
 
 class PlayerLikesTest extends TestCase
 {
@@ -32,7 +31,7 @@ class PlayerLikesTest extends TestCase
     /**
      * @test
      * Checks account is liked when checked (via api get request)
-     * 
+     *
      * @return void
      */
     public function check_account_is_liked()
@@ -76,7 +75,7 @@ class PlayerLikesTest extends TestCase
     /**
      * @test
      * Checks account is unliked when checked (via api get request)
-     * 
+     *
      * @return void
      */
     public function check_account_is_unliked()

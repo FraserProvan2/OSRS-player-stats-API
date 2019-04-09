@@ -27,6 +27,7 @@ class PlayerStatsController extends Controller
             $player_stats = OSRS_stat_helper::process_stats($fetched_stats);
         }
 
+        // response
         return response()->json([
             'username' => $username,
             'stats' => $player_stats,
