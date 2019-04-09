@@ -17,7 +17,6 @@ abstract class TestCase extends BaseTestCase
      */
     public function mock_auth()
     {
-
         return Passport::actingAs(
             factory(User::class)->create(),
             ['create-servers']

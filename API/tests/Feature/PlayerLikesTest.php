@@ -4,31 +4,15 @@ namespace Tests\Feature;
 
 use App\User;
 use Tests\TestCase;
+use App\Like;
 
 class PlayerLikesTest extends TestCase
 {
     /**
      * @test
-     * Checkers a user can like/unlike an account
-     * GET/POST playerLikes
-     *
-     * @return void
-     */
-    public function check_playerLikes_requests()
-    {
-        // setup
-        $this->mock_auth();
-
-        // tests
-        $this->like_account(); // POST
-        $this->check_account_is_liked(); // GET
-        $this->unlike_account(); // POST
-        $this->check_account_is_unliked(); // GET
-    }
-
-    /**
      * Checks account can be liked
      *
+     * @return void
      */
     public function like_account()
     {
@@ -46,12 +30,37 @@ class PlayerLikesTest extends TestCase
     }
 
     /**
+     * @test
+     * Checks account is liked when checked (via api get request)
+     * 
+     * @return void
+     */
+    public function check_account_is_liked()
+    {
+        // setup
+        $this->like_account();
+
+        $response = $this->get('/api/playerLikes/Krun64');
+
+        // test
+        $response
+            ->assertOk()
+            ->assertJson([
+                'liked' => true,
+            ]);
+    }
+
+    /**
+     * @test
      * Checks account can be unliked
      *
+     * @return void
      */
     public function unlike_account()
     {
         // setup
+        $this->like_account();
+
         $body = ['account_name' => 'Krun64'];
         $headers = ['Accept' => 'application/json'];
         $response = $this->post('/api/playerLikes', $body, $headers);
@@ -65,29 +74,16 @@ class PlayerLikesTest extends TestCase
     }
 
     /**
-     * Checks account is liked when checked (via api get request)
-     *
-     */
-    public function check_account_is_liked()
-    {
-        // setup
-        $response = $this->get('/api/playerLikes/Krun64');
-
-        // test
-        $response
-            ->assertOk()
-            ->assertJson([
-                'liked' => true,
-            ]);
-    }
-
-    /**
+     * @test
      * Checks account is unliked when checked (via api get request)
-     *
+     * 
+     * @return void
      */
     public function check_account_is_unliked()
     {
         // set up
+        $this->unlike_account();
+
         $response = $this->get('/api/playerLikes/Krun64');
 
         // test
