@@ -40,7 +40,7 @@ class PlayerCommentsController extends Controller
     }
 
     /**
-    * post comment for an account
+    * Post comment for an account
     *
     * @return Json response message
     */
@@ -93,22 +93,22 @@ class PlayerCommentsController extends Controller
             return response()->json([
                 'message' => 'Not authorized to delete this comment'
             ], 401);
-        } else {
-            // delete comment
-            $result = Comment::delete_comment_by_id($comment_data->id);
- 
-            if($result == false){
-                // general catch incase errors
-                return response()->json([
-                    'message' => 'Something went wrong deleting this comment'
-                ], 400);
-            } else {
-                // response
-                return response()->json([
-                    'message' => 'Comment deleted'
-                ], 200);
-            }
-        }
+        } 
+        
+        // delete comment
+        $result = Comment::delete_comment_by_id($comment_data->id);
+        
+        // general catch incase errors
+        if($result == false){
+            return response()->json([
+                'message' => 'Something went wrong deleting this comment'
+            ], 400);
+        } 
+
+        // response
+        return response()->json([
+            'message' => 'Comment deleted'
+        ], 200);
     }
 
 }
