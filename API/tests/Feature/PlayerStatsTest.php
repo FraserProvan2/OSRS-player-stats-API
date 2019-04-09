@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class OSRSPlayerStatsTest extends TestCase
+class PlayerStatsTest extends TestCase
 {
     use RefreshDatabase;
 
