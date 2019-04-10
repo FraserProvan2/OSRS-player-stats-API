@@ -1,6 +1,13 @@
 # OSRS Player Stats API (hack) #
 
+#### Contents ####
+1. About
+2. Usage
+    - [`POST /oauth/token`](#post-oauthtoken)
+
 ## About ##
+
+
 
 ## Usage ##
 
