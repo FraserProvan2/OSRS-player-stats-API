@@ -40,15 +40,13 @@ class PlayerCommentsTest extends TestCase
      */
     public function comments_can_be_fetched()
     {
-        // setup
         $this->comments_can_be_posted(); // comment #1
 
-        $headers = ['Accept' => 'application/json'];
-        $response = $this->get('/api/playerComments/Krun64', $headers);
+        $response = $this->get('/api/playerStats/krun64');
 
         // test
         $response
-            ->assertStatus(200)
+            ->assertOk()
             ->assertJson([
                 'comments' => [],
             ]);

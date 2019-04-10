@@ -83,7 +83,7 @@ class PlayerLikesTest extends TestCase
         // set up
         $this->unlike_account();
 
-        $response = $this->get('/api/playerLikes/Krun64');
+        $response = $this->get('/api/playerLikes/krun64');
 
         // test
         $response

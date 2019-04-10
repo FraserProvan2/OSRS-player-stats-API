@@ -12,7 +12,6 @@
     - [`GET api/playerStats`](#get-apiplayerstats)
     - [`POST api/playerLikes`](#post-apiplayerlikes-lock)
     - [`GET api/playerLikes`](#get-apiplayerlikes-lock)
-    - [`GET api/playerComments`](#get-apiplayercomments)
     - [`POST api/playerComments`](#post-apiplayercomments-lock)
     - [`DELETE api/playerComments`](#delete-apiplayercomments-lock)
 3. [Installation](#installation)
@@ -37,7 +36,7 @@ Authorization: Bearer eyJ0eXAiOiJKV1Qi...
 
 ### POST `oauth/token` ###
 
-This is the API request to setup the Oauth Client, this request is part of the installation of the API. You must make the request `POST api/account/signup` before you make your Oauth token as its part of the required form data. You must use settings from your `Oauth_clients` table. The Grant Client will always be ID. You will need the Client ID and Secret from record 2. 
+This is the API request to setup the Oauth Client, this request is part of the installation of the API. You must make the request `POST api/account/signup` before you make your Oauth token as its part of the required form data. You must use settings from your `Oauth_clients` table. The Grant Client will always be the ID 2. You will need the Client ID and Secret from record 2. 
 
 Once the successful request is made the necessary tokens will be created (access and refresh tokens).
 
@@ -56,7 +55,7 @@ Once the successful request is made the necessary tokens will be created (access
 "grant_type" = "password",
 "client_secret" = "MTWvDLmxmXgkWW6CEmPVWRrnvbfRFS9x1Z230VsX",
 "client_id" = "2",
-"username" = "fraser@email.com",
+"username" = "bilbo@email.com",
 "password" = "password123",
 ```
 </p>
@@ -85,8 +84,8 @@ Registers user.
 #### Example ####
     
 ```
-"name" = "fraser",
-"email" = "fraser@email.com",
+"name" = "bilbo",
+"email" = "bilbo@email.com",
 "password" = "password123",
 "password_confirmation" = "password123",
 ```
@@ -113,7 +112,7 @@ Logs user in.
 #### Example ####
     
 ```
-"email" = "fraser@email.com",
+"email" = "bilbo@email.com",
 "password" = "password123",
 ```
 </p>
@@ -141,8 +140,8 @@ Return current users information.
 ```
 {
     "id": 1,
-    "name": "fraser",
-    "email": "fraser@email.com",
+    "name": "bilbo",
+    "email": "bilbo@email.com",
     "email_verified_at": null,
     "created_at": "2019-04-10 19:39:55",
     "updated_at": "2019-04-10 19:39:55"
@@ -173,7 +172,7 @@ Returns OSRS stats for a account.
 <details><summary> View Parameters </summary>
 <p>
     
-- `account_name`: String
+- `account_name`: (Name of OSRS account)
 
 #### Example ####
     
@@ -190,77 +189,77 @@ Returns OSRS stats for a account.
     "username": "frodo",
     "stats": {
         "Overall": {
-            "Rank": 1756315,
+            "Rank": 1756468,
             "Level": 512,
             "XP": 5239539
         },
         "Attack": {
-            "Rank": 1950147,
+            "Rank": 1950344,
             "Level": 40,
             "XP": 38551
         },
         "Prayer": {
-            "Rank": 1184194,
+            "Rank": 1184297,
             "Level": 43,
             "XP": 53293
         },
         "Cooking": {
-            "Rank": 1410970,
+            "Rank": 1411141,
             "Level": 43,
             "XP": 54310
         },
         "Woodcutting": {
-            "Rank": 794461,
+            "Rank": 794578,
             "Level": 61,
             "XP": 332119
         },
         "Fletching": {
-            "Rank": 869089,
+            "Rank": 869188,
             "Level": 49,
             "XP": 97440
         },
         "Firemaking": {
-            "Rank": 119724,
+            "Rank": 119739,
             "Level": 88,
             "XP": 4610557
         },
         "Herblore": {
-            "Rank": 1837432,
+            "Rank": 1837567,
             "Level": 1,
             "XP": 0
         },
         "Agility": {
-            "Rank": 1539229,
+            "Rank": 1539379,
             "Level": 30,
             "XP": 14155
         },
         "Thieving": {
-            "Rank": 1612444,
+            "Rank": 1612592,
             "Level": 15,
             "XP": 2559
         },
         "Slayer": {
-            "Rank": 1793178,
+            "Rank": 1793339,
             "Level": 4,
             "XP": 349
         },
         "Farming": {
-            "Rank": 1612474,
+            "Rank": 1612601,
             "Level": 1,
             "XP": 0
         },
         "Runecraft": {
-            "Rank": 1715317,
+            "Rank": 1715457,
             "Level": 1,
             "XP": 0
         },
         "Hunter": {
-            "Rank": 1587053,
+            "Rank": 1587180,
             "Level": 1,
             "XP": 0
         },
         "Construction": {
-            "Rank": 1042169,
+            "Rank": 1042296,
             "Level": 2,
             "XP": 172
         },
@@ -309,7 +308,20 @@ Returns OSRS stats for a account.
             "Level": 0,
             "XP": 0
         }
-    }
+    },
+    "likes": 2,
+    "user_likes": false,
+    "comments": [
+        {
+            "id": 2,
+            "user_id": 1,
+            "account_id": 2,
+            "body": "Nice!",
+            "likes": 0,
+            "created_at": "2019-04-10 20:07:37",
+            "updated_at": "2019-04-10 20:07:37"
+        }
+    ]
 }
 ```
 </p>
@@ -320,7 +332,7 @@ Returns OSRS stats for a account.
 <details><summary> View Form Data </summary>
 <p>
     
-- `account_name`: String (Name of OSRS account)
+- `account_name`: (Name of OSRS account)
 
 #### Example ####
 
@@ -349,7 +361,7 @@ Find out whether current user likes specified account.
 <details><summary> View Parameters </summary>
 <p>
     
-- `account_name`: String (Name of OSRS account)
+- `account_name`: (Name of OSRS account)
 
 #### Example ####
 
@@ -371,54 +383,6 @@ Find out if user currently likes specified user.
 </p>
 </details>
 
-### GET `api/playerComments` ###
-
-Get all comments for an account.
-
-<details><summary> View Parameters </summary>
-<p>
-    
-- `account_name`: String (Name of OSRS account)
-
-#### Example ####
-    
-Fetch of comments for a specified account.
-    
-```
-/api/playerLikes/frodo
-```
-</p>
-</details>
-<details><summary> View Success Response </summary>
-<p>
-    
-```
-{
-    "comments": [
-        {
-            "id": 1,
-            "user_id": 1,
-            "account_id": 2,
-            "body": "this is a gr8 account",
-            "likes": 0,
-            "created_at": "2019-04-10 20:07:30",
-            "updated_at": "2019-04-10 20:07:30"
-        },
-        {
-            "id": 2,
-            "user_id": 1,
-            "account_id": 2,
-            "body": "Nice!",
-            "likes": 0,
-            "created_at": "2019-04-10 20:07:37",
-            "updated_at": "2019-04-10 20:07:37"
-        }
-    ]
-}
-```
-</p>
-</details>
-
 ### POST `api/playerComments` :lock: ###
 
 Post comment for an account.
@@ -427,7 +391,7 @@ Post comment for an account.
 <p>
     
 - `body`: Large text
-- `account_name`: String (Name of OSRS account)
+- `account_name`: (Name of OSRS account)
 
 #### Example ####
     
@@ -453,7 +417,7 @@ Post comment for an account.
 <details><summary> View Parameters </summary>
 <p>
     
-- `comment_id`: Int (ID of comment)
+- `comment_id`: (ID of comment)
 
 #### Example ####
 
@@ -468,7 +432,9 @@ Delete a comment.
 <p>
     
 ```
-
+{
+    "message": "Comment deleted"
+}
 ```
 </p>
 </details>

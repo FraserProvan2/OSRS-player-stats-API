@@ -25,7 +25,6 @@ Route::post('playerLikes', 'PlayerLikesController@update_likes')->middleware('au
 Route::get('playerLikes/{account_name}', 'PlayerLikesController@check_if_liked')->middleware('auth:api');
 
 // Comments
-Route::get('playerComments/{account_name}', 'PlayerCommentsController@get_comments');
 Route::post('playerComments', 'PlayerCommentsController@post_comment')->middleware('auth:api');
 Route::delete('playerComments/{id}', 'PlayerCommentsController@destroy_comment')->middleware('auth:api');
 

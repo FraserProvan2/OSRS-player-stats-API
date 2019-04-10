@@ -18,7 +18,7 @@ class CreateCommentsTable extends Migration
             $table->unsignedBigInteger('user_id'); // user account
             $table->unsignedBigInteger('account_id'); // runescape account
             $table->longText('body');
-            $table->integer('likes')->default(0);
+            // $table->integer('likes')->default(0);
             $table->timestamps();
             
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

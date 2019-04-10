@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Like;
 
 class Like extends Model
 {
@@ -40,20 +41,45 @@ class Like extends Model
     }
 
     /**
-     * Check if account is liked
+     * Get total likes for a username
      *
      * @param String account name
-     * @return Boolean True(Liked)/False(Unliked)
+     * @return Int Number of likes
      */
-    static function check_if_account_is_liked($username)
+    static function get_total_likes($username)
     {
-        $account_data = Account::get_account_info_by_name($username);   
-       
+        $account_data = Account::get_account_info_by_name($username);
+        
+        // get all likes
+        $like_data = Like::where('account_id', $account_data->id)->get();
+        
+        // count the likes
+        $total_likes = count($like_data);
+
+        if($total_likes < 1){
+            return 0;
+        } else {
+            return $total_likes;
+        }
+    }
+
+    /**
+     * Check is account is liked based on username
+     *
+     * @param String account name
+     * @return Boolean if user likes account
+     */
+    static function check_if_user_likes($account_name)
+    {
+        // get account data
+        $account_data = Account::get_account_info_by_name($account_name);   
+
         // attempt to get like data to check if liked already
         $like_data = Like::where('user_id', Auth()->id())
             ->where('account_id', $account_data->id)
             ->first();
         
+        // response based on if like exists
         if(isset($like_data)){
             return true;
         } else {

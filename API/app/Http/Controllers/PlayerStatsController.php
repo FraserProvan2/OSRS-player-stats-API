@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Helpers\OSRS_stat_helper;
 
+use App\Like;
+use App\Comment;
+
 class PlayerStatsController extends Controller
 {
     /**
@@ -31,6 +34,8 @@ class PlayerStatsController extends Controller
         return response()->json([
             'username' => $username,
             'stats' => $player_stats,
+            'likes' => Like::get_total_likes($username),
+            'comments' => Comment::get_accounts_comments($username),
         ], 200);
     }
 
