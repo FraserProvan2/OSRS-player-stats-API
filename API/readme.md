@@ -47,6 +47,8 @@ Once the successful request is made the necessary tokens will be created (access
     "refresh_token": "def50200434702205e7e1758c82fcc06d3b7576dd1fa4cdb220e38974a4797defbf87908d5776f1628c899d7b976a9d0142e00ba4fe2e8476bd04b046eafe79c41d21ed31fe88cd9e54521e7f44b78a94b1607a7b222e02ecc2c1acccf02e60c34b707aac29bfa3dc09c71c42d76af98d33f355bef1ff4277bdd231a7d5cf879dfdc62764c64f73800cb34c8d11aa9495d86fd76d4ab58c42e3ee58a46890d5384ec44a8deff758ba300fb60d8522d3e405998627d0531d5bcfd8aed092a2a628e4d44e078a12b0aad091139a59f1d1589a3fa917d7d4e5ff3e3c716c2d2ab390055631a3f83f76514f8f1c91d519c7b54f880d7d7fb1b560f033978b96149a4ef728fec42fd64e508ee3bb2e835382ada9d329350773b77b06516e9bef7705b04430e1626ffe9f0adf9436cb5f0c730d1bf66e71a0aa49755f3b5de30d5a82b193b12c9c6ee44fe4316e6926c0a2c8eb87eaa249cf4676d71d09fbc86c86fda32"
 }
 ```
+</p>
+</details>
 
 ### POST `api/account/signup` ###
 
@@ -67,9 +69,6 @@ Once the successful request is made the necessary tokens will be created (access
 ### POST `api/playerComments` ###
 
 ### DELETE `api/playerComments` ###
-
-</p>
-</details>
 
 ## Installation ##
 1. Clone repository 
