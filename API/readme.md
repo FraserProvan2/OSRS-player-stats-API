@@ -3,17 +3,18 @@
 #### Contents ####
 1. [About](#about)
 2. [Usage](#usage)
+    - [Headers](#headers)
     - [`POST oauth/token`](#post-oauthtoken)
     - [`POST api/account/signup`](#post-apiaccountsignup)
     - [`POST api/account/login`](#post-apiaccountlogin)
-    - [`GET api/account/user`](#get-apiaccountuser)
-    - [`GET api/account/logout`](#get-apiaccountlogout)
+    - [`GET api/account/user`](#get-apiaccountuser-lock)
+    - [`GET api/account/logout`](#get-apiaccountlogout-lock)
     - [`GET api/playerStats`](#get-apiplayerstats)
-    - [`POST api/playerLikes`](#post-apiplayerlikes)
-    - [`GET api/playerLikes`](#get-apiplayerlikes)
+    - [`POST api/playerLikes`](#post-apiplayerlikes-lock)
+    - [`GET api/playerLikes`](#get-apiplayerlikes-lock)
     - [`GET api/playerComments`](#get-apiplayercomments)
-    - [`POST api/playerComments`](#post-apiplayercomments)
-    - [`DELETE api/playerComments`](#delete-apiplayercomments)
+    - [`POST api/playerComments`](#post-apiplayercomments-lock)
+    - [`DELETE api/playerComments`](#delete-apiplayercomments-lock)
 3. [Installation](#installation)
 4. [Testing](#testing-phpunit)
 
@@ -21,10 +22,12 @@
 
 ## Usage ##
 
+### Headers ###
+
 You will need to specify you want json using the header:
 `Accept: application/json`.
 
-For endpoints that require authentication (endpoints with :lock:)you will need to include the `Authorization` header with the users access token. The access token is given to the user when logged in. 
+For endpoints that require authentication (endpoints with :lock:) you will need to include the `Authorization` header with the users access token. The access token is given to the user when logged in. 
 
 #### Example Headers ####
 ```
