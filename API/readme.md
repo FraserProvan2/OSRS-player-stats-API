@@ -21,18 +21,29 @@
 
 ## Usage ##
 
+You will need to specify you want json using the header:
+`Accept: application/json`.
+
+For endpoints that require authentication (endpoints with :lock:)you will need to include the `Authorization` header with the users access token. The access token is given to the user when logged in. 
+
+#### Example Headers ####
+```
+Accept: application/json,
+Authorization: Bearer eyJ0eXAiOiJKV1Qi...
+```
+
 ### POST `oauth/token` ###
 
-This is the API request to setup the Oauth Client, this request is part of the installation of the API. You must use settings from your `Oauth_clients` table. The Grant Client will always be ID. You will need the Client ID and Secret from record 2. 
+This is the API request to setup the Oauth Client, this request is part of the installation of the API. You must make the request `POST api/account/signup` before you make your Oauth token as its part of the required form data. You must use settings from your `Oauth_clients` table. The Grant Client will always be ID. You will need the Client ID and Secret from record 2. 
 
 Once the successful request is made the necessary tokens will be created (access and refresh tokens).
 
 <details><summary> View Form Data </summary>
 <p>
     
-- `grant_type`: Password
-- `client_secret`: Oauth grant secret from `Oauth_clients, id: 2 (Grant Client)`
-- `client_id`: 2 `(Grant Client)`
+- `grant_type`: Recommended: `password`
+- `client_secret`: Recommended: Oauth grant secret from `Oauth_clients, id: 2 (Grant Client)`
+- `client_id`: Recommended: `2`
 - `username`: Username of User
 - `password`: Password of User
 
@@ -47,7 +58,6 @@ Once the successful request is made the necessary tokens will be created (access
 ```
 </p>
 </details>
-
 <details><summary> View Success Response </summary>
 <p>
     
@@ -64,23 +74,401 @@ Once the successful request is made the necessary tokens will be created (access
 
 ### POST `api/account/signup` ###
 
+Registers user.
+
+<details><summary> View Form Data </summary>
+<p>
+    
+#### Example ####
+    
+```
+"name" = "fraser",
+"email" = "fraser@email.com",
+"password" = "password123",
+"password_confirmation" = "password123",
+```
+</p>
+</details>
+<details><summary> View Success Response </summary>
+<p>
+    
+```
+{
+    "message": "Successfully created user!"
+}
+```
+</p>
+</details>
+
 ### POST `api/account/login` ###
 
-### GET `api/account/user` ###
+Logs user in.
 
-### GET `api/account/logout` ###
+<details><summary> View Form Data </summary>
+<p>
+    
+#### Example ####
+    
+```
+"email" = "fraser@email.com",
+"password" = "password123",
+```
+</p>
+</details>
+<details><summary> View Success Response </summary>
+<p>
+    
+```
+{
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImViMWYxOWQ5NzE2MGZlOGY4N2RlZGU0YWUyOTVhMzNiZjQ1MTUzMGEzZDVkYzAzMjhjM2RmZjY3ZWRkMWIyNzhjOGE0ODBhMjRiZDk3M2YwIn0.eyJhdWQiOiIxIiwianRpIjoiZWIxZjE5ZDk3MTYwZmU4Zjg3ZGVkZTRhZTI5NWEzM2JmNDUxNTMwYTNkNWRjMDMyOGMzZGZmNjdlZGQxYjI3OGM4YTQ4MGEyNGJkOTczZjAiLCJpYXQiOjE1NTQ5MjU4MjcsIm5iZiI6MTU1NDkyNTgyNywiZXhwIjoxNTg2NTQ4MjI3LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.xbMDyTCOSSop7MRPOO7qPUodhJP6ar-15pfr0auhknXbqSHNmjQz4r93khE7pM7I5R9VJOqVfoqkiKzzYoyX-1h4p5_4XTLeM5uuy7yrYt8h5wf5-XF6U7XwJika3Va2VLYY8z4fGnkH8WJFMOWzrpD-jUNDCJJuOKJcmCHD8cctnylCCWYIWXwRolTt3hp0P5Wkc4rV7FHFj5rGwTOCbNHbzM_KqXdJQvPr3kHsO18Lo0HRUqeDDIkQPr-WWSg2rloQj8UJ4szfNu7in-JE5eEC-Sm4dHu31wFZaycZU2tXHLUbntM7_I6QerFLCJEkl1C_sc8o0ACVW7v8gOJ5bRgTapAQLf7gjNizZ0RD14vdMAI2ckjgzse8YOLWqXEzIKALwG7VVGiIzmSNjKcIND9maDa4Hrk442KDflQ3XMnUhZvYMmOCGxBZt-k9ATOlPYzzczrbSk3PTMHbHKa18QM_8pL45vtO6f9hYJUmj2nbi3aBOMPXXug8BJQyan2NsLsTxjg3uXGzWulz_cxK5A5clE_FgFhk-BI9-B-VQc4ubEGIU4bfG9a7dSOTo4nSC5ttB-lEifjo8EMLtaiNncKItkTdC59-WIGib2wIrZJxKQde9BJOulJlZ_xAFiq6tmYBvOAbWg849r54vUicGUQyVvup_X5zvNhQhPEtAXQ",
+    "token_type": "Bearer",
+    "expires_at": "2020-04-10 19:50:27"
+}
+```
+</p>
+</details>
+
+### GET `api/account/user` :lock: ###
+
+Return current users information.
+
+<details><summary> View Success Response </summary>
+<p>
+    
+```
+{
+    "id": 1,
+    "name": "fraser",
+    "email": "fraser@email.com",
+    "email_verified_at": null,
+    "created_at": "2019-04-10 19:39:55",
+    "updated_at": "2019-04-10 19:39:55"
+}
+```
+</p>
+</details>
+
+### GET `api/account/logout` :lock: ###
+
+Logs user out.
+
+<details><summary> View Success Response </summary>
+<p>
+    
+```
+{
+    "message": "Successfully logged out"
+}
+```
+</p>
+</details>
 
 ### GET `api/playerStats` ###
 
-### POST `api/playerLikes` ###
+Returns OSRS stats for a account.
 
-### GET `api/playerLikes` ###
+<details><summary> View Parameters </summary>
+<p>
+    
+- `account_name`: String
+
+#### Example ####
+    
+```
+/api/playerStats/frodo
+```
+</p>
+</details>
+<details><summary> View Success Response </summary>
+<p>
+    
+```
+{
+    "username": "frodo",
+    "stats": {
+        "Overall": {
+            "Rank": 1756315,
+            "Level": 512,
+            "XP": 5239539
+        },
+        "Attack": {
+            "Rank": 1950147,
+            "Level": 40,
+            "XP": 38551
+        },
+        "Prayer": {
+            "Rank": 1184194,
+            "Level": 43,
+            "XP": 53293
+        },
+        "Cooking": {
+            "Rank": 1410970,
+            "Level": 43,
+            "XP": 54310
+        },
+        "Woodcutting": {
+            "Rank": 794461,
+            "Level": 61,
+            "XP": 332119
+        },
+        "Fletching": {
+            "Rank": 869089,
+            "Level": 49,
+            "XP": 97440
+        },
+        "Firemaking": {
+            "Rank": 119724,
+            "Level": 88,
+            "XP": 4610557
+        },
+        "Herblore": {
+            "Rank": 1837432,
+            "Level": 1,
+            "XP": 0
+        },
+        "Agility": {
+            "Rank": 1539229,
+            "Level": 30,
+            "XP": 14155
+        },
+        "Thieving": {
+            "Rank": 1612444,
+            "Level": 15,
+            "XP": 2559
+        },
+        "Slayer": {
+            "Rank": 1793178,
+            "Level": 4,
+            "XP": 349
+        },
+        "Farming": {
+            "Rank": 1612474,
+            "Level": 1,
+            "XP": 0
+        },
+        "Runecraft": {
+            "Rank": 1715317,
+            "Level": 1,
+            "XP": 0
+        },
+        "Hunter": {
+            "Rank": 1587053,
+            "Level": 1,
+            "XP": 0
+        },
+        "Construction": {
+            "Rank": 1042169,
+            "Level": 2,
+            "XP": 172
+        },
+        "Defence": {
+            "Rank": null,
+            "Level": 0,
+            "XP": 0
+        },
+        "Strength": {
+            "Rank": null,
+            "Level": 0,
+            "XP": 0
+        },
+        "Hitpoints": {
+            "Rank": null,
+            "Level": 0,
+            "XP": 0
+        },
+        "Ranged": {
+            "Rank": null,
+            "Level": 0,
+            "XP": 0
+        },
+        "Magic": {
+            "Rank": null,
+            "Level": 0,
+            "XP": 0
+        },
+        "Fishing": {
+            "Rank": null,
+            "Level": 0,
+            "XP": 0
+        },
+        "Crafting": {
+            "Rank": null,
+            "Level": 0,
+            "XP": 0
+        },
+        "Smithing": {
+            "Rank": null,
+            "Level": 0,
+            "XP": 0
+        },
+        "Mining": {
+            "Rank": null,
+            "Level": 0,
+            "XP": 0
+        }
+    }
+}
+```
+</p>
+</details>
+
+### POST `api/playerLikes` :lock: ###
+
+<details><summary> View Form Data </summary>
+<p>
+    
+- `account_name`: String (Name of OSRS account)
+
+#### Example ####
+
+Likes or Unlikes OSRS account, depending if the account is already liked or not.
+
+```
+"account_name" = "Krun64",
+```
+</p>
+</details>
+<details><summary> View Success Response </summary>
+<p>
+    
+```
+{
+    "message": "Player liked"
+}
+```
+</p>
+</details>
+
+### GET `api/playerLikes` :lock: ###
+
+Find out whether current user likes specified account.
+
+<details><summary> View Parameters </summary>
+<p>
+    
+- `account_name`: String (Name of OSRS account)
+
+#### Example ####
+
+Find out if user currently likes specified user.
+    
+```
+/api/playerLikes/frodo
+```
+</p>
+</details>
+<details><summary> View Success Response </summary>
+<p>
+    
+```
+{
+    "liked": true
+}
+```
+</p>
+</details>
 
 ### GET `api/playerComments` ###
 
-### POST `api/playerComments` ###
+Get all comments for an account.
 
-### DELETE `api/playerComments` ###
+<details><summary> View Parameters </summary>
+<p>
+    
+- `account_name`: String (Name of OSRS account)
+
+#### Example ####
+    
+Fetch of comments for a specified account.
+    
+```
+/api/playerLikes/frodo
+```
+</p>
+</details>
+<details><summary> View Success Response </summary>
+<p>
+    
+```
+{
+    "comments": [
+        {
+            "id": 1,
+            "user_id": 1,
+            "account_id": 2,
+            "body": "this is a gr8 account",
+            "likes": 0,
+            "created_at": "2019-04-10 20:07:30",
+            "updated_at": "2019-04-10 20:07:30"
+        },
+        {
+            "id": 2,
+            "user_id": 1,
+            "account_id": 2,
+            "body": "Nice!",
+            "likes": 0,
+            "created_at": "2019-04-10 20:07:37",
+            "updated_at": "2019-04-10 20:07:37"
+        }
+    ]
+}
+```
+</p>
+</details>
+
+### POST `api/playerComments` :lock: ###
+
+Post comment for an account.
+
+<details><summary> View Form Data </summary>
+<p>
+    
+- `body`: Large text
+- `account_name`: String (Name of OSRS account)
+
+#### Example ####
+    
+```
+"body" = "This is the comment",
+"account_name" = "frodo"
+```
+</p>
+</details>
+<details><summary> View Success Response </summary>
+<p>
+    
+```
+{
+    "message": "Comment posted"
+}
+```
+</p>
+</details>
+
+### DELETE `api/playerComments` :lock: ###
+
+<details><summary> View Parameters </summary>
+<p>
+    
+- `comment_id`: Int (ID of comment)
+
+#### Example ####
+
+Delete a comment.
+    
+```
+/api/playerComments/1
+```
+</p>
+</details>
+<details><summary> View Success Response </summary>
+<p>
+    
+```
+
+```
+</p>
+</details>
 
 ## Installation ##
 1. Clone repository 
