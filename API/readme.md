@@ -1,15 +1,27 @@
 # OSRS Player Stats API (hack) #
 
 #### Contents ####
-1. About
-2. Usage
-    - [`POST api/oauth/token`](#post-oauthtoken)
+1. About(#about)
+2. Usage(##usage)
+    - [`POST oauth/token`](#post-oauthtoken)
+    - [`POST api/account/signup`](#post-apiaccountsignup)
+    - [`POST api/account/login`](#post-apiaccountlogin)
+    - [`GET api/account/user`](#get-apiaccountuser)
+    - [`GET api/account/logout`](#get-apiaccountlogout)
+    - [`GET api/playerStats`](#get-apiplayerstats)
+    - [`POST api/playerLikes`](#post-apiplayerlikes)
+    - [`GET api/playerLikes`](#get-apiplayerlikes)
+    - [`GET api/playerComments`](#get-apiplayercomments)
+    - [`POST api/playerComments`](#POST-apiplayercomments)
+    - [`DELETE api/playerComments`](#delete-apiplayercomments)
+3. Installation(#installation)
+4. Testing(#testing-phpunit)
 
 ## About ##
 
 ## Usage ##
 
-### POST `api/oauth/token` ###
+### POST `oauth/token` ###
 
 This is the API request to setup the Oauth Client, this request is part of the installation of the API. You must use settings from your `Oauth_clients` table. The Grant Client will always be ID. You will need the Client ID and Secret from record 2. 
 
