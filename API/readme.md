@@ -3,15 +3,13 @@
 #### Contents ####
 1. About
 2. Usage
-    - [`POST /oauth/token`](#post-oauthtoken)
+    - [`POST api/oauth/token`](#post-oauthtoken)
 
 ## About ##
 
-
-
 ## Usage ##
 
-### POST `/oauth/token` ###
+### POST `api/oauth/token` ###
 
 This is the API request to setup the Oauth Client, this request is part of the installation of the API. You must use settings from your `Oauth_clients` table. The Grant Client will always be ID. You will need the Client ID and Secret from record 2. 
 
@@ -50,6 +48,26 @@ Once the successful request is made the necessary tokens will be created (access
 }
 ```
 
+### POST `api/account/signup` ###
+
+### POST `api/account/login` ###
+
+### GET `api/account/user` ###
+
+### GET `api/account/logout` ###
+
+### GET `api/playerStats` ###
+
+### POST `api/playerLikes` ###
+
+### GET `api/playerLikes` ###
+
+### GET `api/playerComments` ###
+
+### POST `api/playerComments` ###
+
+### DELETE `api/playerComments` ###
+
 </p>
 </details>
 
@@ -59,7 +77,7 @@ Once the successful request is made the necessary tokens will be created (access
 3. Set up DB, configure DB mysql settings in .env (Host, Username, Password)
 4. In the terminal, run `php artisan migrate` to run DB migrations
 5. In the terminal, run `php artisan passport:install` to install Laravel Passport and generate a client 
-6. Follow API endpoint: `POST /oauth/token` to setup Oauth Client
+6. Follow API endpoint: `POST api/oauth/token` to setup Oauth Client
 7. Make requests!
 
 ## Testing (phpunit) ##
