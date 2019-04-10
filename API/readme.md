@@ -1,4 +1,4 @@
-# OSRS Player Stats API (hack) #
+# OSRS Player Stats API for VarrokBook #
 
 #### Contents ####
 1. [About](#about)
@@ -310,7 +310,6 @@ Returns OSRS stats for a account.
         }
     },
     "likes": 2,
-    "user_likes": false,
     "comments": [
         {
             "id": 2,
@@ -390,7 +389,7 @@ Post comment for an account.
 <details><summary> View Form Data </summary>
 <p>
     
-- `body`: Large text
+- `body`: (Comment Body)
 - `account_name`: (Name of OSRS account)
 
 #### Example ####
