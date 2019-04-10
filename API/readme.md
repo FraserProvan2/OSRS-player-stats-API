@@ -1,8 +1,8 @@
 # OSRS Player Stats API (hack) #
 
 #### Contents ####
-1. About(#about)
-2. Usage(##usage)
+1. [About](#about)
+2. [Usage](#usage)
     - [`POST oauth/token`](#post-oauthtoken)
     - [`POST api/account/signup`](#post-apiaccountsignup)
     - [`POST api/account/login`](#post-apiaccountlogin)
@@ -12,10 +12,10 @@
     - [`POST api/playerLikes`](#post-apiplayerlikes)
     - [`GET api/playerLikes`](#get-apiplayerlikes)
     - [`GET api/playerComments`](#get-apiplayercomments)
-    - [`POST api/playerComments`](#POST-apiplayercomments)
+    - [`POST api/playerComments`](#post-apiplayercomments)
     - [`DELETE api/playerComments`](#delete-apiplayercomments)
-3. Installation(#installation)
-4. Testing(#testing-phpunit)
+3. [Installation](#installation)
+4. [Testing](#testing-phpunit)
 
 ## About ##
 
