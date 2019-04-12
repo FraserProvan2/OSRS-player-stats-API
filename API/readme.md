@@ -328,14 +328,14 @@ Returns OSRS stats for a account.
 
 ### POST `api/playerLikes` :lock: ###
 
+Likes or Unlike a OSRS account, depending if the account is already liked or not.
+
 <details><summary> View Form Data </summary>
 <p>
     
 - `account_name`: (Name of OSRS account)
 
 #### Example ####
-
-Likes or Unlikes OSRS account, depending if the account is already liked or not.
 
 ```
 "account_name" = "Krun64",
@@ -413,14 +413,14 @@ Post comment for an account.
 
 ### DELETE `api/playerComments` :lock: ###
 
+Delete a comment.
+
 <details><summary> View Parameters </summary>
 <p>
     
 - `comment_id`: (ID of comment)
 
 #### Example ####
-
-Delete a comment.
     
 ```
 /api/playerComments/1
