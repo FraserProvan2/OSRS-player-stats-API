@@ -1,4 +1,4 @@
-# OSRS Player Stats API for VarrockBook #
+# OSRS Player Stats API #
 
 #### Contents ####
 1. [About](#about)
@@ -19,7 +19,7 @@
 
 ## About ##
 
-## Usage ##
+This API uses runescape.com's OSRS highscores, and turns the data into a json object. There are additonal API requests for Setting up Oauth for API, User Accounts, Favouriting and Liking.
 
 ### Headers ###
 
