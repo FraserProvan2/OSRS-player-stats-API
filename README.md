@@ -338,7 +338,7 @@ Returns OSRS stats for a account.
 Likes or Unlikes OSRS account, depending if the account is already liked or not.
 
 ```
-"account_name" = "Krun64",
+"account_name" = "Link",
 ```
 </p>
 </details>
